@@ -90,7 +90,7 @@
   }
 
   .glass-morphism {
-    @apply bg-clip-padding backdrop-filter backdrop-blur-md bg-opacity-60 
+    @apply bg-black/60 backdrop-filter backdrop-blur-md 
       border border-white/10;
   }
 
