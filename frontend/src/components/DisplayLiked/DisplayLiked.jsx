@@ -30,7 +30,8 @@ const DisplayLiked = () => {
             
             <div className='flex-1 overflow-y-auto scrollbar-hidden'>
                 <div className='sticky top-0 z-10 px-3 py-3 sm:p-4 md:p-6 lg:p-8 
-                    bg-gradient-to-b from-purple-800/40 via-purple-800/20 to-black/0 backdrop-blur-sm'>
+                    bg-gradient-to-b from-purple-800/30 via-purple-800/15 to-transparent 
+                    backdrop-blur-[2px]'>
                     <div className='flex flex-col sm:flex-row gap-3 sm:gap-4 md:gap-6 lg:gap-8 sm:items-end'>
                         {/* Image container */}
                         <div className='w-24 h-24 sm:w-32 sm:h-32 md:w-[180px] md:h-[180px] lg:w-[220px] lg:h-[220px] 
