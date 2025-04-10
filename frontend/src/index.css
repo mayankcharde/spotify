@@ -1,0 +1,179 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --app-sidebar-width: 250px;
+  --app-header-height: 64px;
+  --app-footer-height: 90px;
+}
+
+@layer base {
+  body {
+    @apply bg-black text-white antialiased overflow-hidden;
+  }
+}
+
+@layer components {
+  .sidebar-link {
+    @apply flex items-center gap-4 px-4 py-3 text-gray-400 hover:text-white transition-colors rounded-lg;
+  }
+  
+  .sidebar-link.active {
+    @apply bg-[#282828] text-white;
+  }
+
+  .media-player-btn {
+    @apply p-2 rounded-full hover:bg-[#282828] transition-colors;
+  }
+
+  .slider-container {
+    @apply relative h-1.5 md:h-1 group-hover:h-2 md:group-hover:h-[6px] 
+      bg-[#4d4d4d] rounded-full transition-all cursor-pointer 
+      touch-none select-none;
+  }
+
+  .slider-progress {
+    @apply h-full bg-white group-hover:bg-green-500 rounded-full relative;
+  }
+
+  .slider-thumb {
+    @apply absolute right-0 top-1/2 -translate-y-1/2 
+      w-3 h-3 md:w-4 md:h-4 bg-white rounded-full 
+      scale-0 group-hover:scale-100 transition-transform 
+      shadow-lg touch-none;
+  }
+}
+
+@layer utilities {
+  .scrollbar-hidden {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+  
+  .scrollbar-hidden::-webkit-scrollbar {
+    display: none;
+  }
+
+  .glass-bg {
+    @apply bg-black/30 backdrop-blur-md backdrop-saturate-150;
+  }
+
+  .smooth-scroll {
+    scroll-behavior: smooth;
+  }
+
+  .snap-y-mandatory {
+    scroll-snap-type: y mandatory;
+  }
+
+  .snap-center {
+    scroll-snap-align: center;
+  }
+
+  .card-hover {
+    @apply hover:transform hover:translate-y-[-4px] hover:shadow-xl transition-all duration-300;
+  }
+
+  .btn-primary {
+    @apply px-6 py-2 bg-[#1DB954] text-black font-bold rounded-full
+      hover:scale-105 transition-transform active:scale-95;
+  }
+
+  .btn-secondary {
+    @apply px-6 py-2 bg-white/10 text-white rounded-full
+      hover:bg-white/20 transition-colors;
+  }
+
+  .text-gradient {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-green-400 to-blue-500;
+  }
+
+  .glass-morphism {
+    @apply bg-clip-padding backdrop-filter backdrop-blur-md bg-opacity-60 
+      border border-white/10;
+  }
+
+  .hover-scale {
+    @apply transition-transform duration-200 hover:scale-105 active:scale-95;
+  }
+
+  .button-glow {
+    @apply relative overflow-hidden;
+  }
+
+  .button-glow::after {
+    @apply content-[''] absolute inset-0 rounded-full opacity-0
+      bg-gradient-to-r from-white/20 to-transparent
+      transition-opacity duration-300;
+  }
+
+  .button-glow:hover::after {
+    @apply opacity-100;
+  }
+}
+
+/* Add smooth transitions for all interactive elements */
+button, a {
+  @apply transition-all duration-200;
+}
+
+/* Modern scrollbar styling */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 8px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  @apply bg-transparent;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  @apply bg-white/20 rounded-full hover:bg-white/30;
+}
+
+.mobile-nav-enter {
+  transform: translateX(-100%);
+}
+
+.mobile-nav-enter-active {
+  transform: translateX(0);
+  transition: transform 300ms ease-in-out;
+}
+
+.mobile-nav-exit {
+  transform: translateX(0);
+}
+
+.mobile-nav-exit-active {
+  transform: translateX(-100%);
+  transition: transform 300ms ease-in-out;
+}
+
+@keyframes equalizer {
+  0% {
+    height: 30%;
+  }
+  50% {
+    height: 100%;
+  }
+  100% {
+    height: 30%;
+  }
+}
+
+@keyframes equalizer-1 {
+  0%, 100% { height: 30%; }
+  50% { height: 100%; }
+}
+
+@keyframes equalizer-2 {
+  0%, 100% { height: 60%; }
+  50% { height: 20%; }
+}
+
+@keyframes equalizer-3 {
+  0%, 100% { height: 40%; }
+  50% { height: 80%; }
+}
+
+@import "tailwindcss";
