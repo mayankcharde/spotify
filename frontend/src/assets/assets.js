@@ -38,17 +38,19 @@ import img13 from "./img13.jpg";
 import img14 from "./img14.jpg";
 import img15 from "./img15.jpg";
 import img16 from "./img16.jpg";
-import song1 from "./song1.mp3";
-import song2 from "./song2.mp3";
-import song3 from "./song3.mp3";
-import aajkiraat from "./aajkiraat.mp3";
-import aayinhi from "./aayinhi.mp3";
-import churakedilmera from "./churakedilmera.mp3";
-import Admirin from './Admirin.mp3'
-import hookahmar from './hookahmar.mp3'
-import uyiumma from './uyiumma.mp3'
-import libas from './libas.mp3'
-import tinkujiya from './tinkujiya.mp3'
+
+// Update audio imports to use public URLs
+const song1 = '/audio/song1.mp3'
+const song2 = '/audio/song2.mp3'
+const song3 = '/audio/song3.mp3'
+const aajkiraat = '/audio/aajkiraat.mp3'
+const aayinhi = '/audio/aayinhi.mp3'
+const churakedilmera = '/audio/churakedilmera.mp3'
+const Admirin = '/audio/Admirin.mp3'
+const hookahmar = '/audio/hookahmar.mp3'
+const uyiumma = '/audio/uyiumma.mp3'
+const libas = '/audio/libas.mp3'
+const tinkujiya = '/audio/tinkujiya.mp3'
 
 export const assets = {
   bell_icon,
