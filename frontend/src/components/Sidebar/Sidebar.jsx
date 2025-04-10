@@ -27,9 +27,12 @@ const Sidebar = ({ onClose }) => {
             </div>
 
             {/* Navigation */}
-            <div className='flex-1 overflow-y-auto scrollbar-hidden p-2'>
-                <div className='bg-[#121212] rounded-lg mb-2'>
-                    <button onClick={() => navigate('/')} 
+            <div className='flex-1 flex flex-col overflow-hidden p-2'>
+                <div className='bg-[#121212] rounded-lg mb-2 shrink-0'>
+                    <button onClick={() => {
+                        navigate('/');
+                        onClose?.();
+                    }} 
                         className='w-full sidebar-link'>
                         <img className='w-6' src={assets.home_icon} alt="" />
                         <span className='font-bold'>Home</span>
@@ -39,8 +42,8 @@ const Sidebar = ({ onClose }) => {
                     </div>
                 </div>
 
-                <div className='bg-[#121212] rounded-lg flex-1'>
-                    <div className='p-4 flex items-center justify-between'>
+                <div className='bg-[#121212] rounded-lg flex-1 flex flex-col overflow-hidden'>
+                    <div className='p-4 flex items-center justify-between shrink-0'>
                         <div className='flex items-center gap-3'>
                             <img className='w-8' src={assets.stack_icon} alt="" />
                             <span className='font-semibold'>Your Library</span>
@@ -52,8 +55,11 @@ const Sidebar = ({ onClose }) => {
                         </button>
                     </div>
                     
-                    {/* Library content */}
-                    <div className='px-2 pb-4 space-y-2'>
+                    {/* Scrollable playlist container */}
+                    <div className='px-2 pb-4 space-y-2 overflow-y-auto flex-1 
+                        scrollbar-track-transparent scrollbar-thumb-white/20 
+                        hover:scrollbar-thumb-white/40 scrollbar-thin
+                        custom-scrollbar'>
                         <button onClick={() => {
                             navigate('/liked');
                             onClose?.();
