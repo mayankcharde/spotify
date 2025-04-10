@@ -6,6 +6,7 @@ const Player = () => {
     const [volume, setVolume] = useState(100);
     const [previousVolume, setPreviousVolume] = useState(100);
     const volumeBarRef = useRef(null);
+    const [showVolumeSlider, setShowVolumeSlider] = useState(false);
 
     const handleVolumeChange = (e) => {
         const rect = volumeBarRef.current.getBoundingClientRect();
@@ -106,100 +107,133 @@ const Player = () => {
 
     return (
         <div className='fixed bottom-0 left-0 right-0 bg-gradient-to-b from-[#282828] to-black px-2 md:px-4 py-3'>
-            <div className='flex flex-col md:grid md:grid-cols-3 gap-2 md:gap-4'>
-                {/* Song Info */}
-                <div className='flex items-center gap-3 max-w-[300px]'>
-                    <img className='w-12 h-12 md:w-14 md:h-14 rounded object-cover' src={track.image} alt="" />
-                    <div className='min-w-0'>
-                        <p className='font-semibold truncate text-sm md:text-base'>{track.name}</p>
-                        <p className='text-xs md:text-sm text-gray-400 truncate'>{track.desc}</p>
+            <div className='flex flex-col gap-2'>
+                {/* Main Content */}
+                <div className='flex flex-col md:grid md:grid-cols-3 gap-2 md:gap-4'>
+                    {/* Song Info */}
+                    <div className='flex items-center gap-3 max-w-[300px]'>
+                        <img className='w-12 h-12 md:w-14 md:h-14 rounded object-cover' src={track.image} alt="" />
+                        <div className='min-w-0'>
+                            <p className='font-semibold truncate text-sm md:text-base'>{track.name}</p>
+                            <p className='text-xs md:text-sm text-gray-400 truncate'>{track.desc}</p>
+                        </div>
+                    </div>
+
+                    {/* Player Controls and Progress Bar */}
+                    <div className='flex flex-col justify-center gap-2 order-first md:order-none'>
+                        {/* Main Controls */}
+                        <div className='flex items-center justify-center gap-6'>
+                            <button onClick={previous} className='p-2 hover:bg-white/10 rounded-full'>
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5">
+                                    <path d="M16.6738 21.8435C17.5689 22.5049 18.3479 22.0193 18.3479 20.8601V3.13995C18.3479 1.98079 17.5689 1.49499 16.6738 2.15689L9.95846 7.01049C9.51088 7.34337 8.67171 7.34337 8.22412 7.01049L3.00303 3.25689C2.10797 2.59549 1.32891 3.08109 1.32891 4.24025V19.7598C1.32891 20.919 2.10797 21.4048 3.00303 20.7429L8.22412 16.9893C8.67171 16.6564 9.51088 16.6564 9.95846 16.9893L16.6738 21.8435Z"/>
+                                </svg>
+                            </button>
+                            <button onClick={skipBackward} className='p-2 hover:bg-white/10 rounded-full'>
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5">
+                                    <path d="M12 9.75L14.25 12m0 0l2.25 2.25M14.25 12l2.25-2.25M14.25 12L12 14.25" />
+                                    <path fillRule="evenodd" d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25zM12.75 6a.75.75 0 00-1.5 0v6c0 .414.336.75.75.75h4.5a.75.75 0 000-1.5h-3.75V6z" />
+                                </svg>
+                            </button>
+                            <button onClick={playStatus ? pause : play} 
+                                className='w-10 h-10 flex items-center justify-center bg-white rounded-full 
+                                hover:scale-105 active:scale-95 transition-transform'>
+                                {playStatus ? (
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="black" className="w-5 h-5">
+                                        <path fillRule="evenodd" d="M6.75 5.25a.75.75 0 01.75-.75H9a.75.75 0 01.75.75v13.5a.75.75 0 01-.75.75H7.5a.75.75 0 01-.75-.75V5.25zm7 0a.75.75 0 01.75-.75h1.5a.75.75 0 01.75.75v13.5a.75.75 0 01-.75.75h-1.5a.75.75 0 01-.75-.75V5.25z" />
+                                    </svg>
+                                ) : (
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="black" className="w-5 h-5 ml-0.5">
+                                        <path fillRule="evenodd" d="M4.5 5.653c0-1.426 1.529-2.33 2.779-1.643l11.54 6.348c1.295.712 1.295 2.573 0 3.285L7.28 19.991c-1.25.687-2.779-.217-2.779-1.643V5.653z" />
+                                    </svg>
+                                )}
+                            </button>
+                            <button onClick={skipForward} className='p-2 hover:bg-white/10 rounded-full'>
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5">
+                                    <path d="M12 9.75L14.25 12m0 0l2.25 2.25M14.25 12l2.25-2.25M14.25 12L12 14.25" />
+                                    <path fillRule="evenodd" d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25zM6 14.25c0 .414.336.75.75.75h4.5a.75.75 0 00.75-.75v-3.75h3.75a.75.75 0 000-1.5h-4.5a.75.75 0 00-.75.75v4.5z" />
+                                </svg>
+                            </button>
+                            <button onClick={next} className='p-2 hover:bg-white/10 rounded-full'>
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5">
+                                    <path d="M7.32891 2.15649C6.43385 1.49509 5.65479 1.98069 5.65479 3.13985V20.86C5.65479 22.0192 6.43385 22.505 7.32891 21.8431L14.0443 16.9895C14.4918 16.6566 15.331 16.6566 15.7786 16.9895L20.9997 20.7431C21.8948 21.4045 22.6738 20.9189 22.6738 19.7597V4.24015C22.6738 3.08099 21.8948 2.59519 20.9997 3.25709L15.7786 7.01069C15.331 7.34357 14.4918 7.34357 14.0443 7.01069L7.32891 2.15649Z"/>
+                                </svg>
+                            </button>
+                        </div>
+
+                        {/* Progress Bar */}
+                        <div className='flex items-center gap-2'>
+                            <span className='text-xs text-gray-400 w-10 text-right select-none'>
+                                {time.currentTime.minute}:{time.currentTime.second.toString().padStart(2, '0')}
+                            </span>
+                            <div className='flex-1 group' ref={seekBg} onClick={seekSong}>
+                                <div className='h-1.5 bg-[#4d4d4d] rounded-full group-hover:h-2 transition-all'>
+                                    <div ref={seekBar} className='h-full bg-white group-hover:bg-green-500 rounded-full relative'>
+                                        <div className='absolute right-0 top-1/2 -translate-y-1/2 
+                                            w-3 h-3 bg-white rounded-full 
+                                            opacity-0 group-hover:opacity-100 transition-all'></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className='flex items-center gap-2'>
+                                <NowPlayingAnimation />
+                                <span className='text-xs text-gray-400 w-10 select-none'>
+                                    {time.totalTime.minute}:{time.totalTime.second.toString().padStart(2, '0')}
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* Volume Control - Now visible on mobile as icon only */}
+                    <div className='flex items-center justify-end gap-4'>
+                        <button 
+                            onClick={() => setShowVolumeSlider(prev => !prev)} 
+                            className='p-2 hover:bg-white/10 rounded-full md:hidden'
+                        >
+                            {getVolumeIcon()}
+                        </button>
+                        
+                        {/* Desktop Volume Slider */}
+                        <div className='hidden md:flex items-center gap-4'>
+                            <button onClick={toggleMute} className='p-2 hover:bg-white/10 rounded-full'>
+                                {getVolumeIcon()}
+                            </button>
+                            <div 
+                                className='w-32 group'
+                                onClick={handleVolumeChange}
+                                ref={volumeBarRef}
+                            >
+                                <div className='h-1 bg-[#4d4d4d] rounded-full group-hover:h-[6px] transition-all'>
+                                    <div 
+                                        className='h-full bg-white group-hover:bg-green-500 rounded-full relative'
+                                        style={{ width: `${volume}%` }}>
+                                        <div className='absolute right-0 top-1/2 -translate-y-1/2 w-3 h-3 bg-white rounded-full 
+                                            opacity-0 group-hover:opacity-100 transition-all'></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
-                {/* Player Controls and Progress Bar */}
-                <div className='flex flex-col justify-center gap-2 order-first md:order-none'>
-                    {/* Main Controls */}
-                    <div className='flex items-center justify-center gap-6'>
-                        <button onClick={previous} className='p-2 hover:bg-white/10 rounded-full'>
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5">
-                                <path d="M16.6738 21.8435C17.5689 22.5049 18.3479 22.0193 18.3479 20.8601V3.13995C18.3479 1.98079 17.5689 1.49499 16.6738 2.15689L9.95846 7.01049C9.51088 7.34337 8.67171 7.34337 8.22412 7.01049L3.00303 3.25689C2.10797 2.59549 1.32891 3.08109 1.32891 4.24025V19.7598C1.32891 20.919 2.10797 21.4048 3.00303 20.7429L8.22412 16.9893C8.67171 16.6564 9.51088 16.6564 9.95846 16.9893L16.6738 21.8435Z"/>
-                            </svg>
-                        </button>
-                        <button onClick={skipBackward} className='p-2 hover:bg-white/10 rounded-full'>
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5">
-                                <path d="M12 9.75L14.25 12m0 0l2.25 2.25M14.25 12l2.25-2.25M14.25 12L12 14.25" />
-                                <path fillRule="evenodd" d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25zM12.75 6a.75.75 0 00-1.5 0v6c0 .414.336.75.75.75h4.5a.75.75 0 000-1.5h-3.75V6z" />
-                            </svg>
-                        </button>
-                        <button onClick={playStatus ? pause : play} 
-                            className='w-10 h-10 flex items-center justify-center bg-white rounded-full 
-                            hover:scale-105 active:scale-95 transition-transform'>
-                            {playStatus ? (
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="black" className="w-5 h-5">
-                                    <path fillRule="evenodd" d="M6.75 5.25a.75.75 0 01.75-.75H9a.75.75 0 01.75.75v13.5a.75.75 0 01-.75.75H7.5a.75.75 0 01-.75-.75V5.25zm7 0a.75.75 0 01.75-.75h1.5a.75.75 0 01.75.75v13.5a.75.75 0 01-.75.75h-1.5a.75.75 0 01-.75-.75V5.25z" />
-                                </svg>
-                            ) : (
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="black" className="w-5 h-5 ml-0.5">
-                                    <path fillRule="evenodd" d="M4.5 5.653c0-1.426 1.529-2.33 2.779-1.643l11.54 6.348c1.295.712 1.295 2.573 0 3.285L7.28 19.991c-1.25.687-2.779-.217-2.779-1.643V5.653z" />
-                                </svg>
-                            )}
-                        </button>
-                        <button onClick={skipForward} className='p-2 hover:bg-white/10 rounded-full'>
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5">
-                                <path d="M12 9.75L14.25 12m0 0l2.25 2.25M14.25 12l2.25-2.25M14.25 12L12 14.25" />
-                                <path fillRule="evenodd" d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25zM6 14.25c0 .414.336.75.75.75h4.5a.75.75 0 00.75-.75v-3.75h3.75a.75.75 0 000-1.5h-4.5a.75.75 0 00-.75.75v4.5z" />
-                            </svg>
-                        </button>
-                        <button onClick={next} className='p-2 hover:bg-white/10 rounded-full'>
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5">
-                                <path d="M7.32891 2.15649C6.43385 1.49509 5.65479 1.98069 5.65479 3.13985V20.86C5.65479 22.0192 6.43385 22.505 7.32891 21.8431L14.0443 16.9895C14.4918 16.6566 15.331 16.6566 15.7786 16.9895L20.9997 20.7431C21.8948 21.4045 22.6738 20.9189 22.6738 19.7597V4.24015C22.6738 3.08099 21.8948 2.59519 20.9997 3.25709L15.7786 7.01069C15.331 7.34357 14.4918 7.34357 14.0443 7.01069L7.32891 2.15649Z"/>
-                            </svg>
-                        </button>
-                    </div>
-
-                    {/* Progress Bar */}
-                    <div className='flex items-center gap-2'>
-                        <span className='text-xs text-gray-400 w-10 text-right select-none'>
-                            {time.currentTime.minute}:{time.currentTime.second.toString().padStart(2, '0')}
-                        </span>
-                        <div className='flex-1 group' ref={seekBg} onClick={seekSong}>
-                            <div className='h-1.5 bg-[#4d4d4d] rounded-full group-hover:h-2 transition-all'>
-                                <div ref={seekBar} className='h-full bg-white group-hover:bg-green-500 rounded-full relative'>
-                                    <div className='absolute right-0 top-1/2 -translate-y-1/2 
-                                        w-3 h-3 bg-white rounded-full 
+                {/* Mobile Volume Slider - Appears when volume icon is clicked */}
+                {showVolumeSlider && (
+                    <div className='px-4 pb-2 md:hidden animate-slide-up'>
+                        <div 
+                            className='w-full group'
+                            onClick={handleVolumeChange}
+                            ref={volumeBarRef}
+                        >
+                            <div className='h-1 bg-[#4d4d4d] rounded-full group-hover:h-[6px] transition-all'>
+                                <div 
+                                    className='h-full bg-white group-hover:bg-green-500 rounded-full relative'
+                                    style={{ width: `${volume}%` }}>
+                                    <div className='absolute right-0 top-1/2 -translate-y-1/2 w-3 h-3 bg-white rounded-full 
                                         opacity-0 group-hover:opacity-100 transition-all'></div>
                                 </div>
                             </div>
                         </div>
-                        <div className='flex items-center gap-2'>
-                            <NowPlayingAnimation />
-                            <span className='text-xs text-gray-400 w-10 select-none'>
-                                {time.totalTime.minute}:{time.totalTime.second.toString().padStart(2, '0')}
-                            </span>
-                        </div>
                     </div>
-                </div>
-
-                {/* Volume Control - Desktop Only */}
-                <div className='hidden md:flex items-center justify-end gap-4'>
-                    <button onClick={toggleMute} className='p-2 hover:bg-white/10 rounded-full'>
-                        {getVolumeIcon()}
-                    </button>
-                    <div 
-                        className='w-32 group'
-                        onClick={handleVolumeChange}
-                        ref={volumeBarRef}
-                    >
-                        <div className='h-1 bg-[#4d4d4d] rounded-full group-hover:h-[6px] transition-all'>
-                            <div 
-                                className='h-full bg-white group-hover:bg-green-500 rounded-full relative'
-                                style={{ width: `${volume}%` }}>
-                                <div className='absolute right-0 top-1/2 -translate-y-1/2 w-3 h-3 bg-white rounded-full 
-                                    opacity-0 group-hover:opacity-100 transition-all'></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                )}
             </div>
         </div>
     )

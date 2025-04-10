@@ -19,44 +19,55 @@ const DisplayPlaylist = () => {
     };
 
     return (
-        <>
+        <div className='h-full flex flex-col'>
             <DisplayNav />
-            <div className='mt-8'>
-                <div className='flex items-end gap-6'>
-                    <div className='w-48 h-48 bg-gradient-to-br from-[#404040] to-[#282828] rounded-lg shadow-2xl flex items-center justify-center'>
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white" className="w-16 h-16">
-                            <path fillRule="evenodd" d="M19.952 1.651a.75.75 0 01.298.599V16.303a3 3 0 01-2.176 2.884l-1.32.377a2.553 2.553 0 11-1.403-4.909l2.311-.66a1.5 1.5 0 001.088-1.442V6.994l-9 2.572v9.737a3 3 0 01-2.176 2.884l-1.32.377a2.553 2.553 0 11-1.402-4.909l2.31-.66a1.5 1.5 0 001.088-1.442V5.25a.75.75 0 01.544-.721l10.5-3a.75.75 0 01.658.122z" />
-                        </svg>
-                    </div>
-                    <div>
-                        <p className='text-sm'>Playlist</p>
-                        <h1 className='text-5xl font-bold mb-4'>{playlist.name}</h1>
-                        <p className='text-gray-400'>{playlist.description}</p>
-                        <p className='text-sm mt-2'>{playlist.songs.length} songs</p>
+            
+            <div className='flex-1 overflow-y-auto'>
+                <div className='sticky top-0 z-10 p-4 md:p-8 bg-gradient-to-b from-[#404040]/40 to-black/0 backdrop-blur-sm'>
+                    <div className='flex flex-col md:flex-row gap-6 md:items-end'>
+                        <div className='w-32 md:w-48 h-32 md:h-48 bg-gradient-to-br from-[#404040] to-[#282828] 
+                            rounded-lg shadow-2xl flex items-center justify-center mx-auto md:mx-0 
+                            hover:scale-105 transition-transform'>
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white" className="w-12 md:w-16 h-12 md:h-16">
+                                <path fillRule="evenodd" d="M19.952 1.651a.75.75 0 01.298.599V16.303a3 3 0 01-2.176 2.884l-1.32.377a2.553 2.553 0 11-1.403-4.909l2.311-.66a1.5 1.5 0 001.088-1.442V6.994l-9 2.572v9.737a3 3 0 01-2.176 2.884l-1.32.377a2.553 2.553 0 11-1.402-4.909l2.31-.66a1.5 1.5 0 001.088-1.442V5.25a.75.75 0 01.544-.721l10.5-3a.75.75 0 01.658.122z" />
+                            </svg>
+                        </div>
+                        <div className='text-center md:text-left'>
+                            <p className='text-sm uppercase tracking-wider opacity-90'>Playlist</p>
+                            <h1 className='text-4xl md:text-7xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-white to-gray-400'>
+                                {playlist.name}
+                            </h1>
+                            <p className='text-gray-300'>{playlist.description}</p>
+                            <p className='text-sm mt-2 text-gray-400'>{playlist.songs.length} songs</p>
+                        </div>
                     </div>
                 </div>
 
-                <div className='mt-8'>
+                <div className='px-4 md:px-8 pb-32'>
                     {playlist.songs.length === 0 ? (
-                        <div className='text-center py-20 text-gray-400'>
-                            <p className='text-2xl font-bold mb-2'>This playlist is empty</p>
+                        <div className='text-center text-gray-400 mt-20'>
+                            <p className='text-2xl font-bold mb-4'>This playlist is empty</p>
                             <p>Add songs to your playlist</p>
                         </div>
                     ) : (
                         <div className='space-y-2'>
                             {playlist.songs.map((song, index) => (
                                 <div key={`${song.id}-${index}`} 
-                                    className={`group flex items-center justify-between p-3 rounded-lg 
-                                        ${playStatus && track.id === song.id ? 'bg-[#ffffff1a]' : 'hover:bg-[#ffffff1a]'}`}>
-                                    <div className='flex items-center gap-4 flex-1' onClick={() => playWithId(song.id)}>
+                                    className={`flex items-center gap-4 p-3 rounded-lg transition-all duration-300
+                                        ${playStatus && track.id === song.id ? 'bg-white/10' : 'hover:bg-white/5'} 
+                                        group relative`}>
+                                    <div className='flex items-center gap-4 flex-1'
+                                        onClick={() => playWithId(song.id)}>
                                         <span className='w-6 text-center text-gray-400 group-hover:hidden'>
                                             {index + 1}
                                         </span>
-                                        <span className='w-6 hidden group-hover:block text-white cursor-pointer'>
+                                        <span className='w-6 hidden group-hover:block text-white'>
                                             {playStatus && track.id === song.id ? '❚❚' : '▶'}
                                         </span>
-                                        <img src={song.image} alt={song.name} 
-                                            className='w-12 h-12 rounded' />
+                                        <div className='relative w-12 h-12 rounded-lg overflow-hidden group-hover:shadow-lg transition-all'>
+                                            <img src={song.image} alt={song.name} 
+                                                className='w-full h-full object-cover group-hover:scale-110 transition-transform duration-300' />
+                                        </div>
                                         <div>
                                             <p className={`font-semibold ${playStatus && track.id === song.id ? 'text-green-500' : ''}`}>
                                                 {song.name}
@@ -66,9 +77,8 @@ const DisplayPlaylist = () => {
                                     </div>
                                     <button 
                                         onClick={() => setShowDeleteConfirm(song)}
-                                        className='md:opacity-0 md:group-hover:opacity-100 transition-opacity px-3 py-1.5 
-                                            text-gray-400 hover:text-white rounded-full hover:bg-[#ffffff1a]'
-                                    >
+                                        className='opacity-0 group-hover:opacity-100 transition-opacity px-4 py-2 
+                                            text-gray-400 hover:text-red-500 rounded-full hover:bg-white/10'>
                                         Remove
                                     </button>
                                 </div>
@@ -80,9 +90,9 @@ const DisplayPlaylist = () => {
 
             {/* Delete Confirmation Modal */}
             {showDeleteConfirm && (
-                <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 backdrop-blur-sm"
+                <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 backdrop-blur-sm animate-fade-in"
                     onClick={() => setShowDeleteConfirm(null)}>
-                    <div className="bg-[#282828] p-6 rounded-lg shadow-xl max-w-md w-full mx-4"
+                    <div className="bg-[#282828] p-6 rounded-lg shadow-xl max-w-md w-full mx-4 animate-slide-up"
                         onClick={e => e.stopPropagation()}>
                         <h3 className="text-xl font-bold mb-4">Remove Song</h3>
                         <p className="text-gray-300 mb-6">
@@ -91,13 +101,13 @@ const DisplayPlaylist = () => {
                         <div className="flex justify-end gap-4">
                             <button
                                 onClick={() => setShowDeleteConfirm(null)}
-                                className="px-4 py-2 text-sm font-semibold rounded-full hover:bg-[#333333]"
+                                className="px-4 py-2 text-sm font-semibold rounded-full hover:bg-[#333333] transition-colors"
                             >
                                 Cancel
                             </button>
                             <button
                                 onClick={() => handleDeleteSong(showDeleteConfirm.id)}
-                                className="px-4 py-2 text-sm font-semibold bg-white text-black rounded-full hover:bg-gray-200"
+                                className="px-4 py-2 text-sm font-semibold bg-red-500 rounded-full hover:bg-red-600 transition-colors"
                             >
                                 Remove
                             </button>
@@ -105,7 +115,7 @@ const DisplayPlaylist = () => {
                     </div>
                 </div>
             )}
-        </>
+        </div>
     );
 };
 
