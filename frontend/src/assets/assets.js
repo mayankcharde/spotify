@@ -46,6 +46,28 @@ import libaas from  "./libaaas.png"
 import tinkujiyaaa from  "./tinkujiya.png"
 import uyi from  "./uyiummaa.png"
 import ad from  "./admirin.png"
+import rag from  "./ragragmei.png"
+import b from  "./b.png"
+import d from  "./dilmerekabtak.png"
+import jadu from  "./jaduterinazar.png"
+import terahuaa from  "./terahua.png"
+import jabtaak from  "./jab tak.png"
+import ajnaabi from  "./ajnabi.png"
+import mg from  "./meiagar.png"
+import ng from  "./nagada sang.png"
+import aur from  "./aurkya.png"
+import boones from  "./bones.png"
+import br from  "./brown.png"
+import cw from  "./chal waha.png"
+import chammakk from  "./chammak.png" 
+import dd from  "./darddilo.png"  
+import sg from  "./shreeganesha.png"  
+import dku from  "./dilkyumera.png"  
+import g from  "./garbadhi.png"  
+import h from  "./haiapna2.png"  
+import hm from  "./huamei.png"  
+import ek from  "./ekrasta.png"  
+import jh from  "./joshhai.png"  
 // Update audio imports to use public URLs
 const song1 = '/audio/song1.mp3'
 const song2 = '/audio/song2.mp3'
@@ -58,6 +80,28 @@ const hookahmar = '/audio/hookahmar.mp3'
 const uyiumma = '/audio/uyiumma.mp3'
 const libas = '/audio/libas.mp3'
 const tinkujiya = '/audio/tinkujiya.mp3'
+const rehena ='/audio/rehena.mp3'
+const ragrag ='/audio/ragrag.mp3'
+const dilbar ='/audio/dilbarmerekabtak.mp3'
+const jaduteri ='/audio/jaduteri.mp3'
+const terahua ='/audio/terahua.mp3'
+const ajnabi ='/audio/ajnabi.mp3'
+const jabtak ='/audio/jab tak.mp3'
+const mak ='/audio/meinagarkahoon.mp3'
+const nagada ='/audio/nagadasang.mp3'
+const aurkya ='/audio/aurkya.mp3'
+const bones ='/audio/bones.mp3'
+const brown ='/audio/brown.mp3'
+const chalwaha ='/audio/chalawaha.mp3'
+const chammak ='/audio/chammak.mp3'
+const darddilo ='/audio/darddilo.mp3'
+const ganesh ='/audio/devashreeganesha.mp3'
+const dil ='/audio/dilkyuyemera.mp3'
+const gar ='/audio/gar.mp3'
+const haiapni ='/audio/haiapni.mp3'
+const huamai ='/audio/huamai.mp3'
+const ikrasta ='/audio/ikrasta.mp3'
+const josh ='/audio/josh.mp3'
 
 export const assets = {
   bell_icon,
@@ -219,5 +263,181 @@ export const songsData = [
     file: tinkujiya,
     desc: "Tinku Jiya T-Series || Bobby Deol, Sunny Deol, Nafisa Ali, Dharmendra",
     duration: "5:00",
+  },
+  {
+    id: 11,
+    name: "Rag-Rag-Mein-Is-Terha",
+    image: rag,
+    file: ragrag,
+    desc: "Tinku Jiya T-Series || Bobby Deol, Sunny Deol, Nafisa Ali, Dharmendra",
+    duration: "7:32",
+  },
+  {
+    id: 12,
+    name: "Bachke Rehna Re Baba",
+    image: tinkujiyaaa,
+    file: b,
+    desc: "Tinku Jiya T-Series || Bobby Deol, Sunny Deol, Nafisa Ali, Dharmendra",
+    duration: "6:25",
+  },
+  {
+    id: 13,
+    name: "Dil mere kab tak",
+    image: d,
+    file: dilbar,
+    desc: "Tinku Jiya T-Series || Bobby Deol, Sunny Deol, Nafisa Ali, Dharmendra",
+    duration: "4:48",
+  },
+  {
+    id: 14,
+    name: "Jadu teri nazar",
+    image: tinkujiyaaa,
+    file: jadu,
+    desc: "Tinku Jiya T-Series || Bobby Deol, Sunny Deol, Nafisa Ali, Dharmendra",
+    duration: "4:41",
+  },
+  {
+    id: 15,
+    name: "Tera Hua by Love yatri",
+    image: terahuaa,
+    file: terahua,
+    desc: "Tinku Jiya T-Series || Bobby Deol, Sunny Deol, Nafisa Ali, Dharmendra",
+    duration: "3:34",
+  },
+  {
+    id: 16,
+    name: "06 Jab Tak (Redux) - MS Dhoni",
+    image: jabtaak,
+    file: jabtak,
+    desc: "Tinku Jiya T-Series || Bobby Deol, Sunny Deol, Nafisa Ali, Dharmendra",
+    duration: "3:38",
+  },
+  {
+    id: 17,
+    name: "03. Aajnabee Mujhko Itna Bata",
+    image: ajnaabi,
+    file: ajnabi,
+    desc: "Tinku Jiya T-Series || Bobby Deol, Sunny Deol, Nafisa Ali, Dharmendra",
+    duration: "6:13",
+  },
+  {
+    id: 18,
+    name: "Main Agar Kahoon",
+    image: mg,
+    file: mak,
+    desc: "Tinku Jiya T-Series || Bobby Deol, Sunny Deol, Nafisa Ali, Dharmendra",
+    duration: "5:10",
+  },
+  {
+    id: 19,
+    name: "07 Nagada Sang Dol",
+    image: ng,
+    file: nagada,
+    desc: "Tinku Jiya T-Series || Bobby Deol, Sunny Deol, Nafisa Ali, Dharmendra",
+    duration: "4:43",
+  },
+  {
+    id: 20,
+    name: "Aur Kya - Shahrukh Khan",
+    image: aur,
+    file: aurkya,
+    desc: "Tinku Jiya T-Series || Bobby Deol, Sunny Deol, Nafisa Ali, Dharmendra",
+    duration: "5:03",
+  },
+  {
+    id: 21,
+    name: "Bones",
+    image: boones,
+    file: bones,
+    desc: "Tinku Jiya T-Series || Bobby Deol, Sunny Deol, Nafisa Ali, Dharmendra",
+    duration: "2:45",
+  },
+  {
+    id: 22,
+    name: "Brown Rang International Villager ",
+    image: br,
+    file: brown,
+    desc: "Tinku Jiya T-Series || Bobby Deol, Sunny Deol, Nafisa Ali, Dharmendra",
+    duration: "2:59",
+  },
+  {
+    id: 23,
+    name: "Chal Wahan Jaate Hain (Arijit Singh)",
+    image: cw,
+    file: chalwaha,
+    desc: "Tinku Jiya T-Series || Bobby Deol, Sunny Deol, Nafisa Ali, Dharmendra",
+    duration: "5:26",
+  },
+  {
+    id: 24,
+    name: "Chammak-Challo",
+    image: chammakk,
+    file: chammak,
+    desc: "Tinku Jiya T-Series || Bobby Deol, Sunny Deol, Nafisa Ali, Dharmendra",
+    duration: "4:05",
+  },
+  {
+    id: 25,
+    name: "Dard-Dilo-Ke",
+    image: dd,
+    file: darddilo,
+    desc: "Tinku Jiya T-Series || Bobby Deol, Sunny Deol, Nafisa Ali, Dharmendra",
+    duration: "5:04",
+  },
+  {
+    id: 26,
+    name: "Deva Shree Ganesha",
+    image: sg,
+    file: ganesh,
+    desc: "Tinku Jiya T-Series || Bobby Deol, Sunny Deol, Nafisa Ali, Dharmendra",
+    duration: "5:57",
+  },
+  {
+    id: 27,
+    name: "Dil-Kyun-Yeh-Mera-Shor-Kare",
+    image: dku,
+    file: dil,
+    desc: "Tinku Jiya T-Series || Bobby Deol, Sunny Deol, Nafisa Ali, Dharmendra",
+    duration: "5:32",
+  },
+  {
+    id: 28,
+    name: "Garbadhi-Ananya-Bhat",
+    image: g,
+    file: gar,
+    desc: "Tinku Jiya T-Series || Bobby Deol, Sunny Deol, Nafisa Ali, Dharmendra",
+    duration: "2:40",
+  },
+  {
+    id: 29,
+    name: "Hai Apna Dil Toh Awara",
+    image: tinkujiyaaa,
+    file: h,
+    desc: "Tinku Jiya T-Series || Bobby Deol, Sunny Deol, Nafisa Ali, Dharmendra",
+    duration: "4:24",
+  },
+  {
+    id: 30,
+    name: "Hua Main (Animal)",
+    image: hm,
+    file: huamai,
+    desc: "Tinku Jiya T-Series || Bobby Deol, Sunny Deol, Nafisa Ali, Dharmendra",
+    duration: "4:37",
+  },
+  {
+    id: 31,
+    name: "Ik_Rasta_Hai_Zindagi_-_Kaala_Patthar",
+    image: ek,
+    file: ikrasta,
+    desc: "Tinku Jiya T-Series || Bobby Deol, Sunny Deol, Nafisa Ali, Dharmendra",
+    duration: "5:17",
+  },
+  {
+    id: 32,
+    name: "Josh-Hai Mera Dil",
+    image: jh,
+    file: josh,
+    desc: "Tinku Jiya T-Series || Bobby Deol, Sunny Deol, Nafisa Ali, Dharmendra",
+    duration: "4:08",
   },
 ];
