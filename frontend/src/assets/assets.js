@@ -38,12 +38,19 @@ import img13 from "./img13.jpg";
 import img14 from "./img14.jpg";
 import img15 from "./img15.jpg";
 import img16 from "./img16.jpg";
-
+import hookahbar from "./hookahbar.png"
+import aajkiraaat from  "./aajkiraat.png"
+import aayinhhi from  "./aay nhi.png"
+import churakedilmeraa from  "./churakedilmera.png"
+import libaas from  "./libaaas.png"
+import tinkujiyaaa from  "./tinkujiya.png"
+import uyi from  "./uyiummaa.png"
+import ad from  "./admirin.png"
 // Update audio imports to use public URLs
 const song1 = '/audio/song1.mp3'
 const song2 = '/audio/song2.mp3'
 const song3 = '/audio/song3.mp3'
-const aajkiraat = '/audio/aajkiraat.mp3'
+const aajkirat = '/audio/Aajkiraat.mp3'
 const aayinhi = '/audio/aayinhi.mp3'
 const churakedilmera = '/audio/churakedilmera.mp3'
 const Admirin = '/audio/Admirin.mp3'
@@ -152,15 +159,15 @@ export const songsData = [
   {
     id: 3,
     name: "Aaj ki raat",
-    image: img4,
-    file: aajkiraat,
+    image: aajkiraaat,
+    file: aajkirat,
     desc: "Aaj ki raat from stree 2",
     duration: "3:48",
   },
   {
     id: 4,
     name: "Aayi nhi",
-    image: img5,
+    image: aayinhhi,
     file: aayinhi,
     desc: "Aayi nhi from stree 2",
     duration: "2:58",
@@ -168,7 +175,7 @@ export const songsData = [
   {
     id: 5,
     name: "Chura ke dil mera",
-    image: img13,
+    image: churakedilmeraa,
     file: churakedilmera,
     desc: "Chura Ke Dil Mera by Farhan Sabir ",
     duration: "7:57",
@@ -176,7 +183,7 @@ export const songsData = [
   {
     id: 6,
     name: "Hookah Bar",
-    image: img7,
+    image: hookahbar,
     file: hookahmar,
     desc: "Hookah Bar (Remixed By DJ A. Sen, DJ Amann Nagpal) by Himesh Reshammiya",
     duration: "3:22",
@@ -184,7 +191,7 @@ export const songsData = [
   {
     id: 7,
     name: "Admirin",
-    image: img12,
+    image: ad,
     file: Admirin,
     desc: "Admirin You (feat. Preston Pablo) by Karan Aujla, IKKY",
     duration: "3:34",
@@ -192,7 +199,7 @@ export const songsData = [
   {
     id: 8,
     name: "Uyi Amma by Amitabh Bhattacharya",
-    image: img12,
+    image: uyi,
     file: uyiumma,
     desc: "Uyi Amma by Amitabh Bhattacharya",
     duration: "4:13",
@@ -200,7 +207,7 @@ export const songsData = [
   {
     id: 9,
     name: "Libaas",
-    image: img12,
+    image: libaas,
     file: libas,
     desc: "Libaas Mp3 Song - Kaka",
     duration: "4:27",
@@ -208,7 +215,7 @@ export const songsData = [
   {
     id: 10,
     name: "Tinku Jiya",
-    image: img12,
+    image: tinkujiyaaa,
     file: tinkujiya,
     desc: "Tinku Jiya T-Series || Bobby Deol, Sunny Deol, Nafisa Ali, Dharmendra",
     duration: "5:00",
