@@ -83,6 +83,7 @@ const tinkujiya = '/audio/tinkujiya.mp3'
 const rehena ='/audio/rehena.mp3'
 const ragrag ='/audio/ragrag.mp3'
 const dilbar ='/audio/dilbarmerekabtak.mp3'
+const bachke='/audio/bachke.mp3'
 const jaduteri ='/audio/jaduteri.mp3'
 const terahua ='/audio/terahua.mp3'
 const ajnabi ='/audio/ajnabi.mp3'
@@ -275,8 +276,8 @@ export const songsData = [
   {
     id: 12,
     name: "Bachke Rehna Re Baba",
-    image: tinkujiyaaa,
-    file: b,
+    image: b,
+    file: bachke,
     desc: "Tinku Jiya T-Series || Bobby Deol, Sunny Deol, Nafisa Ali, Dharmendra",
     duration: "6:25",
   },
@@ -291,8 +292,8 @@ export const songsData = [
   {
     id: 14,
     name: "Jadu teri nazar",
-    image: tinkujiyaaa,
-    file: jadu,
+    image: jadu,
+    file: jaduteri,
     desc: "Tinku Jiya T-Series || Bobby Deol, Sunny Deol, Nafisa Ali, Dharmendra",
     duration: "4:41",
   },
@@ -411,8 +412,8 @@ export const songsData = [
   {
     id: 29,
     name: "Hai Apna Dil Toh Awara",
-    image: tinkujiyaaa,
-    file: h,
+    image: h,
+    file: haiapni,
     desc: "Tinku Jiya T-Series || Bobby Deol, Sunny Deol, Nafisa Ali, Dharmendra",
     duration: "4:24",
   },
