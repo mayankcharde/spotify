@@ -5,10 +5,9 @@ import React from "react";
 export const PlayerContext = createContext();
 
 const PlayerContextProvider = (props) => {
-
     const audioRef = useRef();
+    const seekBarRef = useRef();
     const seekBg = useRef();
-    const seekBar = useRef();
     
     const [track, setTrack] = useState(songsData[0]);
     const [playStatus, setPlayStatus] = useState(false)
@@ -63,22 +62,38 @@ const PlayerContextProvider = (props) => {
     };
 
     useEffect(() => {
-        setTimeout(() => {
-            audioRef.current.ontimeupdate = (e) => {
-                seekBar.current.style.width = (Math.floor(audioRef.current.currentTime * 100 / audioRef.current.duration)) + "%";
-                setTime({
-                    currentTime: {
-                        second: Math.floor(audioRef.current.currentTime % 60),
-                        minute: Math.floor(audioRef.current.currentTime / 60)
-                    },
-                    totalTime: {
-                        second: Math.floor(audioRef.current.duration % 60),
-                        minute: Math.floor(audioRef.current.duration / 60)
-                    }
-                })
+        const updateTime = () => {
+            if (!audioRef.current) return;
+            
+            const currentTime = audioRef.current.currentTime;
+            const duration = audioRef.current.duration;
+            
+            if (seekBarRef.current) {
+                seekBarRef.current.style.width = `${(currentTime * 100) / duration}%`;
             }
-        }, 1000);
-    }, [audioRef])
+            
+            setTime({
+                currentTime: {
+                    second: Math.floor(currentTime % 60),
+                    minute: Math.floor(currentTime / 60)
+                },
+                totalTime: {
+                    second: Math.floor(duration % 60),
+                    minute: Math.floor(duration / 60)
+                }
+            });
+        };
+
+        if (audioRef.current) {
+            audioRef.current.addEventListener('timeupdate', updateTime);
+        }
+
+        return () => {
+            if (audioRef.current) {
+                audioRef.current.removeEventListener('timeupdate', updateTime);
+            }
+        };
+    }, [audioRef.current]);
 
     useEffect(() => {
         const handleKeyPress = (e) => {
@@ -126,7 +141,7 @@ const PlayerContextProvider = (props) => {
     };
 
     const contextValue = {
-        audioRef, track, setTrack, playStatus, setPlayStatus, next, previous, play, pause, playWithId, seekBar, seekBg, seekSong, time
+        audioRef, seekBarRef, track, setTrack, playStatus, setPlayStatus, next, previous, play, pause, playWithId, seekBg, seekSong, time
     }
 
     return (

@@ -43,12 +43,33 @@
       scale-0 group-hover:scale-100 transition-transform 
       shadow-lg touch-none;
   }
+
+  .slidedown-modal {
+    @apply fixed inset-x-0 bottom-0 bg-[#282828] rounded-t-xl shadow-xl 
+      transform transition-transform duration-300 ease-out z-[100]
+      md:hidden;
+  }
+
+  .slidedown-modal.open {
+    @apply translate-y-0;
+  }
+
+  .slidedown-modal.closed {
+    @apply translate-y-full;
+  }
+
+  .modal-overlay {
+    @apply fixed inset-0 bg-black/50 backdrop-blur-sm 
+      transition-opacity duration-300 z-[99]
+      md:hidden;
+  }
 }
 
 @layer utilities {
   .scrollbar-hidden {
     scrollbar-width: none;
     -ms-overflow-style: none;
+    -webkit-overflow-scrolling: touch;
   }
   
   .scrollbar-hidden::-webkit-scrollbar {
@@ -211,6 +232,44 @@
       }
     }
   }
+
+  .player-controls {
+    @apply flex items-center justify-center gap-2 md:gap-6;
+  }
+
+  .player-button {
+    @apply p-2 hover:bg-white/10 rounded-full transition-colors;
+  }
+
+  .player-button-large {
+    @apply w-10 h-10 flex items-center justify-center bg-white rounded-full 
+      hover:scale-105 active:scale-95 transition-transform;
+  }
+
+  .player-icon {
+    @apply w-4 h-4 md:w-5 md:h-5;
+  }
+
+  .player-section {
+    @apply flex items-center gap-2 md:gap-4;
+  }
+
+  /* Horizontal scroll snap */
+  .snap-x-mandatory {
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+  }
+
+  .snap-start {
+    scroll-snap-align: start;
+  }
+
+  /* Horizontal scrollbar for touch devices */
+  @media (hover: none) {
+    .overflow-x-auto {
+      -webkit-overflow-scrolling: touch;
+    }
+  }
 }
 
 /* Hide default scrollbar for mobile devices */
@@ -339,3 +398,18 @@ button, a {
 }
 
 @import "tailwindcss";
+
+/* Improve mobile player layout */
+@media (max-width: 640px) {
+  .player-grid {
+    @apply grid-cols-1 gap-2;
+  }
+
+  .player-controls {
+    @apply order-last;
+  }
+
+  .volume-controls {
+    @apply justify-center;
+  }
+}
